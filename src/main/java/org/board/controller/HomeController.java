@@ -11,9 +11,13 @@ import java.util.Locale;
 @Controller
 public class HomeController {
 
+    /**
+     * @ResponseBody : 해당 어노테이션으로 인해서 페이지로 연결이 되지 않고 직접 글자가 찍혀져 나왔다.
+     *
+     */
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String Home(Locale locale, Model model){
-        return "<h1>Hello world!</h1>";
+    public String Home(){
+        return "Home";
     }
 }
