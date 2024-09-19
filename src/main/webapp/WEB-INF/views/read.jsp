@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.board.domain.BoardVO" %>
 <% BoardVO data = (BoardVO) request.getAttribute("boardVO"); %>
+<% int seq = data.getSeq(); %>
 
 <!DOCTYPE html>
 <html>
@@ -35,6 +36,7 @@
 </table>
 <div>
     <a href="/edit/<%=data.getSeq()%>">수정</a>
+    <a href="/delete/<%=seq%>">삭제</a>
     <a href="/list">목록</a>
 </div>
 </body>

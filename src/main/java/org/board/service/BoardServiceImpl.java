@@ -1,12 +1,14 @@
 package org.board.service;
 
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.board.domain.BoardDao;
 import org.board.domain.BoardVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -32,8 +34,9 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int edit(BoardVO boardVO){
-        return boardDao.update(boardVO);
+    public int edit(BoardVO boardVO, int seq){
+        log.info(String.valueOf(seq));
+        return boardDao.update(new BoardVO(boardVO, seq));
     }
 
     @Override

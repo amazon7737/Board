@@ -1,4 +1,6 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="org.board.domain.BoardVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
 </head>
 
 <body>
-    <form  action="/write" method="post">
+    <form:form modelAttribute="boardVO" action="/write" method="post">
         <table border="1">
             <tr>
                 <th>제목</th>
@@ -28,14 +30,16 @@
                 </td>
             </tr>
             <tr>
-                <th>비밀번호</th>
+                <th>
+                    <label>비밀번호</label>
+                </th>
                 <td>
-                    <input type="text" id="password" name = "password"/>
+                    <input name="password"/>
                 </td>
             </tr>
         </table>
         <button type = "submit">등록</button>
         <a href="/list">목록</a>
-    </form>
+    </form:form>
 </body>
 </html>

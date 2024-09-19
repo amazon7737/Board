@@ -9,7 +9,7 @@ public interface BoardService {
 
     public abstract int delete(BoardVO boardVO);
 
-    public abstract int edit(BoardVO boardVO);
+    public abstract int edit(BoardVO boardVO, int seq);
 
     public abstract void write(BoardVO boardVO);
 
