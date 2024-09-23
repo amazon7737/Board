@@ -44,10 +44,5 @@
         </table>
     </form>
 
-<script>
-    // function validatePassword(password){
-    //     if(password != )
-    // }
-</script>
 </body>
 </html>
