@@ -1,18 +1,12 @@
 package org.board.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.board.domain.BoardVO;
 import org.board.service.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
-
-import java.util.Arrays;
 import java.util.HashMap;
 
 @Controller
@@ -20,9 +14,11 @@ import java.util.HashMap;
 @Slf4j
 public class BoardController {
 
+    private final BoardService boardService;
 
-    @Autowired
-    private BoardService boardService;
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     @RequestMapping(value = "/list")
     public String list(Model model){
@@ -58,13 +54,14 @@ public class BoardController {
 
     @RequestMapping(value = "/edit/{seq}", method = RequestMethod.POST)
     public String edit(@RequestParam HashMap<String, String> info, int pwd, Model model){
-        // 정보 검색
         BoardVO boardVO = boardService.read(Integer.parseInt(info.get("seq")));
 
            if(boardVO.getPassword() == pwd){
                log.info("id: {} ", Integer.parseInt(info.get("seq")));
+
                boardService.edit(new BoardVO(info.get("title"), info.get("content"), info.get("writer"), Integer.parseInt(info.get("pwd")
                        )), Integer.parseInt(info.get("seq")));
+
                return "redirect:/list";
            }
 
